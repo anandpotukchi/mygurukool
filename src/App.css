@@ -1,8 +1,17 @@
-/*.App {
-  text-align: center;
-}*/
+.App,
+body {
+  background: #074EE8;
+  height: 100rem ;
+}
+
+.btn-primary, .bg-blue {
+  background: #074EE8 !important;
+
+}
+
 
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
 ul li {
   display: block;
   line-height: 35px;
@@ -328,6 +337,7 @@ header .far {
   color: #fff;
 }
 .navbar-dark .navbar-brand.logo {
+  font-family: 'Shrikhand', cursive;
   color: #fff;
 }
 .section-nav .alert-primary {

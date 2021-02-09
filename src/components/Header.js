@@ -4,22 +4,25 @@ import * as _apiUtils from "./util/AxiosUtil";
 import * as _constants from "./util/constants";
 import * as _gconsts from "./util/gConsts";
 import * as _msconsts from "./util/msConsts";
-import "..//App.css";
+import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class Header extends Component {
   render() {
     return (
       <Fragment>
-        <header className="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+        <header className="navbar navbar-expand navbar-dark bg-blue flex-column flex-md-row bd-navbar">
           <div className="container">
-            <a className="navbar-brand mr-0 mr-md-2 logo">My Gurukool (BETA)</a>
-            <ul className="navbar-nav ml-md-auto">
+            <a className="navbar-brand mr-0 mr-md-2 logo">
+              <i class="fas fa-book-open"></i>   myGurukul
+            </a>
+            <ul className="navbar-nav">
+
+
               <li className="nav-item">
-                <i className="far fa-user">
                   {/* Student Name */}
                   &nbsp;<b>{this.props.studentName}</b>
-                </i>{" "}
+                {" "}
                 &emsp;
                 {this.props.isSignedIn ? (
                   <a
@@ -42,12 +45,13 @@ export default class Header extends Component {
                       sessionStorage.clear();                    
                     }}
                   >
-                    <i className="fas fa-sign-out-alt">&nbsp;Logout</i>
+                    <i className="fas fa-power-off">&nbsp;Logout</i>
                   </a>
                 ) : (
                   ""
                 )}
               </li>
+              
             </ul>
           </div>
         </header>

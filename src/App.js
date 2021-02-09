@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import "./App.css";
 import Auth from "./components/Auth";
 import Session from "./components/Session";
-
 import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";

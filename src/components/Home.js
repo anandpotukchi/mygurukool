@@ -104,6 +104,8 @@ class Home extends Component {
         {<FloatingButton performAction={this.floatingButtonAction} 
                          showCreateCourse={this.createCourseClick}
                          />}
+
+          
         <div className={this.state.cssContainer}>
           <div className="row section-nav">
             <div className="col-12">
@@ -116,35 +118,7 @@ class Home extends Component {
                     {/* {<GroupNameDropdown dropdownTitleText="Class" itemList={this.state.userData.group} itemSelection={this.groupSelection}/>} */}
                   </b>
                 </span>
-                <ul className="float-right">
-                  <li>
-                    <a
-                      href="#"
-                      onClick={() =>
-                        this.handleConferencePanelSize(
-                          //At this location
-                          // "showConfPane is False"
-                          //        =>Vid conference is open (next action: setInactive=> pane 1: 100%/ -1 )
-                          // "showConfPane is True"
-                          //        => Vid conference is inactive (next action: setInactive=> pane 1: 50%/ 0 )
-                          !this.state.showConfPane ? 0 : -1
-                        )
-                      }
-                    >
-                      {/* <i className="far fa-file-archive fa-1g">Archive</i>
-                    </a>{" "}
-                    <a
-                      href="#"
-                      onClick={() =>
-                        this.handleConferencePanelSize(
-                          !this.state.showConfPane ? 0 : -1
-                        )
-                      }
-                    > */}
-                      <i className="far fa-comments fa-1g">{'\n'}Conference</i>
-                    </a>
-                  </li>
-                </ul>
+                
               </div>
             </div>
           </div>
