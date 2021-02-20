@@ -154,7 +154,6 @@ export default class Course extends Component {
             <div className="row sub-excer-section">
               <div className="col-12">
                 <ul
-                  className="nav nav-pills mb-3 sub-nav"
                   id="pills-tab"
                   role="tablist"
                 >
@@ -172,8 +171,7 @@ export default class Course extends Component {
                           href="#?"
                           onClick={this.loadAssignment}
                         >
-                          {/* Course Name */}
-                          {course.name}
+                          
                           {_util.loadIconBySubject(course.name) ? (
                             <img
                               src={_util.loadIconBySubject(course.name)}
@@ -183,6 +181,9 @@ export default class Course extends Component {
                           ) : (
                             ""
                           )}
+                          
+                          {/* Course Name */}
+                          {course.name}
                         </a>
                       </li>
                     ))}

@@ -153,200 +153,290 @@ export default class Assignment extends Component {
   render() {
     let hasDriveFiles = false;
     return (
-      <Fragment>
+      // <Fragment>
         <div className="tabcontent col-12">
           {this.state.isLoading ? (
             <img src={_util.loaderRandomGifs()} className="loaderIcon" />
           ) : (
             ""
           )}
-
           <Accordion
             allowZeroExpanded={true}
             onChange={(e) => this.setState({ openedItems: e })}
             preExpanded={this.state.openedItems}
           >
-            <Fragment>
+            {/* <Fragment> */}
+
+              
               {!this.state.showEditCourseWork ? (this.state.hasAssignments ? (
-                this.state.assignments.map((assignment, i) => (
-                  <AccordionItem key={assignment.id} uuid={assignment.id}>
-                    <Fragment>
-                      <AccordionItemHeading>
-                        <AccordionItemButton>
-                          <div className="row">
-                            <div className="float-left col-12 exercisetitle">
-                              {assignment.title
-                                ? assignment.title
-                                : "No Exercise Data"}
-                              <small className="text-muted float-right">
-                                {/* TODO: Proper DateFormat*/}
-                                {assignment.dueDate
-                                  ? "Due Date " +
-                                    assignment.dueDate.day +
-                                    "." +
-                                    assignment.dueDate.month +
-                                    "." +
-                                    assignment.dueDate.year +
-                                    ",  Time: " +
-                                    assignment.dueTime.hours +
-                                    ":" +
-                                    assignment.dueTime.minutes
-                                  : ""}
-                                  <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
-                                    {this.props.user.isTeacherLogin ? 
-                                    <a href="#" target="" onClick={(e) => this.onEditClick(assignment)}>
-                                      <i className="fas fa-pencil-alt" style={{ fontSize: this.state.assignmentFontSize }}></i>
-                                    </a>
+                this.state.assignments.map((assignment, i) => 
+                <div>
+                  <div class="card mt-5">
+                    <div class="card-header text-muted">
+                        <div className="row">
+                          <div className="col">
+                            <span>
+                              <strong>Exercise:</strong> {assignment.title
+                                  ? assignment.title
+                                  : "No Exercise Data"}
+                            </span>
+                          </div>
+      
+                          <div className="col text-right">
+                            <span className="text-muted">
+                              
+                              {/* Date */}
+                              {assignment.dueDate
+                                    ? "Due Date " +
+                                      assignment.dueDate.day +
+                                      "." +
+                                      assignment.dueDate.month +
+                                      "." +
+                                      assignment.dueDate.year +
+                                      ",  Time: " +
+                                      assignment.dueTime.hours +
+                                      ":" +
+                                      assignment.dueTime.minutes
                                     : ""}
-                                  </div>
-                              </small>
-                            </div>
-                          </div>
-                        </AccordionItemButton>
-                      </AccordionItemHeading>
-                      <AccordionItemPanel>
-                        <div className="card-body">
-                          <div className="row float-right">
-                            {this.getSubmissionTurnInState(
-                              assignment.courseId,
-                              assignment.id
-                            )}
-                            <button
-                              type="button"
-                              className="btn btn-primary turnin"
-                              disabled={!this.props.isActive}
-                              onClick={() =>
-                                this.handleSubmissionTurnIn(
-                                  assignment.courseId,
-                                  assignment.id,
-                                  this.state.submissionId
-                                )
-                              }
-                            >
-                              <i className="fas fa-check"></i>{" "}
-                              {this.state.turnInState}
-                            </button>
-                          </div>
-                          <div className="row">
-                            <div className="col-12">
-                              <b>Exercise Instructions</b>
-                              {assignment.description ? (
-                                <ul dangerouslySetInnerHTML=
-                                  {{__html: assignment.description,}}>
-                                </ul>
-                              ) : (
-                                ""
-                              )}
-                              {this.extractMaterials(assignment.materials)}
-                              {this.state.material.formUrls &&
-                                this.state.material.formUrls.map((formUrl) => (
-                                  <ul>
-                                    <iframe
-                                      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                                      src={formUrl}
-                                      width="100%"
-                                      height="700"
-                                      allowtransparency="true"
-                                      frameBorder="0"
-                                    ></iframe>
+
+                            </span>
+                          </div> 
+                        </div>
+                    </div>  
+      
+                    <div class="card-body">
+                      <h5 class="card-title">Instructions</h5>
+                      <span className="m-0 p-0">
+                        
+                        {/* Assignment Description */}
+                        {assignment.description ? (
+                                  <ul dangerouslySetInnerHTML=
+                                    {{__html: assignment.description,}}>
                                   </ul>
-                                ))}
+                                ) : (
+                                  ""
+                        )}
+
+                        {this.extractMaterials(assignment.materials)}
+                            { this.state.material.formUrls &&
+                                  this.state.material.formUrls.map((formUrl) => (
+                                    <ul>
+                                      <iframe
+                                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                                        src={formUrl}
+                                        width="100%"
+                                        height="1000"
+                                        allowtransparency="true"
+                                        frameBorder="0"
+                                      ></iframe>
+                                    </ul>
+                              ))}
+
+
+
+                      </span>
+                      
+                      <div className="mt-3 mb-3">
+                       
+
+                        {/* Watch Video */}
+                        {this.state.material.youtubeVideos &&
+                                  this.state.material.youtubeVideos.map(
+                                    (youtube) =>
+                                      youtube ? (
+                                        <Video
+                                          id={youtube.id}
+                                          name={youtube.title}
+                                          thumbnailUrl={youtube.thumbnailUrl}
+                                        />
+                                      ) : (
+                                        ""
+                                      )
+                                  )}
+                      </div>
+      
+                    </div>
+                  </div>   
+
+                  {/* <AccordionItem key={assignment.id} uuid={assignment.id}>
+                        <AccordionItemHeading>
+                          <AccordionItemButton>
+                            <div className="row">
+                              <div className="float-left col-12 exercisetitle">
+                                {assignment.title
+                                  ? assignment.title
+                                  : "No Exercise Data"}
+                                <small className="text-muted float-right">
+                                  {assignment.dueDate
+                                    ? "Due Date " +
+                                      assignment.dueDate.day +
+                                      "." +
+                                      assignment.dueDate.month +
+                                      "." +
+                                      assignment.dueDate.year +
+                                      ",  Time: " +
+                                      assignment.dueTime.hours +
+                                      ":" +
+                                      assignment.dueTime.minutes
+                                    : ""}
+                                    <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
+                                      {this.props.user.isTeacherLogin ? 
+                                      <a href="#" target="" onClick={(e) => this.onEditClick(assignment)}>
+                                        <i className="fas fa-pencil-alt" style={{ fontSize: this.state.assignmentFontSize }}></i>
+                                      </a>
+                                      : ""}
+                                    </div>
+                                </small>
+                              </div>
                             </div>
-                            <div className="col-12">
-                              <b>Exercise Audio/ Video Explanation</b>
-                              {/* <div className="col-6"> */}
-                              {this.state.material.youtubeVideos &&
-                                this.state.material.youtubeVideos.map(
-                                  (youtube) =>
-                                    youtube ? (
-                                      <Video
-                                        id={youtube.id}
-                                        name={youtube.title}
-                                        thumbnailUrl={youtube.thumbnailUrl}
-                                      />
-                                    ) : (
-                                      ""
-                                    )
+                          </AccordionItemButton>
+                        </AccordionItemHeading>
+                        <AccordionItemPanel>
+                        
+                          <div className="card-body">
+                            <div className="row float-right">
+                              {this.getSubmissionTurnInState(
+                                assignment.courseId,
+                                assignment.id
+                              )}
+                              <button
+                                type="button"
+                                className="btn btn-primary turnin"
+                                disabled={!this.props.isActive}
+                                onClick={() =>
+                                  this.handleSubmissionTurnIn(
+                                    assignment.courseId,
+                                    assignment.id,
+                                    this.state.submissionId
+                                  )
+                                }
+                              >
+                                <i className="fas fa-check"></i>{" "}
+                                {this.state.turnInState}
+                              </button>
+                            </div>
+                            
+                            <div className="row">
+                              <div className="col-12">
+                                <b>Exercise Instructions</b>
+                                {assignment.description ? (
+                                  <ul dangerouslySetInnerHTML=
+                                    {{__html: assignment.description,}}>
+                                  </ul>
+                                ) : (
+                                  ""
                                 )}
-                            </div>
-                            <div className="col-12">
-                              <Interaction
-                                // userName={this.props.userName}
-                                // isTeacherLogin={this.props.isTeacherLogin}
-                                // courseId={assignment.courseId}
-                                user={this.state.user}
-                                subjectName={assignment.title}
-                                isActive={this.props.isActive}
-                              />
-                            </div>
-                            {/* </div> */}
-                          </div>
-                          <div className="card card-body fileblock row">
-                            <div className="col-12">
-                              {this.state.material.exerciseDetails &&
-                                this.state.material.exerciseDetails.map(
-                                  (exerciseDetail) =>
-                                    exerciseDetail
-                                      ? ((hasDriveFiles = true),
-                                        (
-                                          <FileUpload
-                                            exerciseDetails={exerciseDetail}
-                                            user={this.state.user}
-                                            //userName={this.state.user.name}
-                                            //courseId={assignment.courseId}
-                                            assignmentId={assignment.id}
-                                            isActive={this.props.isActive}
-                                          />
-                                        ))
-                                      : ""
-                                )}
-                              {!hasDriveFiles ? (
-                                <FileUpload
-                                  exerciseDetails={""}
+                                
+                                {this.extractMaterials(assignment.materials)}
+                                {this.state.material.formUrls &&
+                                  this.state.material.formUrls.map((formUrl) => (
+                                    <ul>
+                                      <iframe
+                                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                                        src={formUrl}
+                                        width="100%"
+                                        height="700"
+                                        allowtransparency="true"
+                                        frameBorder="0"
+                                      ></iframe>
+                                    </ul>
+                                  ))}
+                              </div>
+                              <div className="col-12">
+                                {this.state.material.youtubeVideos &&
+                                  this.state.material.youtubeVideos.map(
+                                    (youtube) =>
+                                      youtube ? (
+                                        <Video
+                                          id={youtube.id}
+                                          name={youtube.title}
+                                          thumbnailUrl={youtube.thumbnailUrl}
+                                        />
+                                      ) : (
+                                        ""
+                                      )
+                                  )}
+                              </div>
+                              <div className="col-12">
+                                <Interaction
+                                  // userName={this.props.userName}
+                                  // isTeacherLogin={this.props.isTeacherLogin}
+                                  // courseId={assignment.courseId}
                                   user={this.state.user}
-                                  //userName={this.state.user.name}
-                                  //courseId={assignment.courseId}
-                                  assignmentId={assignment.id}
+                                  subjectName={assignment.title}
                                   isActive={this.props.isActive}
                                 />
-                              ) : (
-                                ""
-                              )}
+                              </div>
                             </div>
-                            <div className="col-12">
-                              {/* {this.state.formUpload} */}
+                            <div className="card card-body fileblock row">
+                              <div className="col-12">
+                                {this.state.material.exerciseDetails &&
+                                  this.state.material.exerciseDetails.map(
+                                    (exerciseDetail) =>
+                                      exerciseDetail
+                                        ? ((hasDriveFiles = true),
+                                          (
+                                            <FileUpload
+                                              exerciseDetails={exerciseDetail}
+                                              user={this.state.user}
+                                              //userName={this.state.user.name}
+                                              //courseId={assignment.courseId}
+                                              assignmentId={assignment.id}
+                                              isActive={this.props.isActive}
+                                            />
+                                          ))
+                                        : ""
+                                  )}
+                                {!hasDriveFiles ? (
+                                  <FileUpload
+                                    exerciseDetails={""}
+                                    user={this.state.user}
+                                    //userName={this.state.user.name}
+                                    //courseId={assignment.courseId}
+                                    assignmentId={assignment.id}
+                                    isActive={this.props.isActive}
+                                  />
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                              <div className="col-12">
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </AccordionItemPanel>
-                    </Fragment>
-                  </AccordionItem>
-                )) 
+                        </AccordionItemPanel>
+                    </AccordionItem>
+                 */}
+                </div>
+                ) 
               ) : (this.state.user.selectedCourseId && this.state.user.selectedCourseId !== 'null' ?(
-                    <div>
-                    <div className="row">
-                      <b>
-                        Congratulations! <br/><br/>
-                        You are ready to create your first Coursework, following instructions shall guide you.
-                      </b>
-                    </div>
-                    <div className="row">
-                      <img
-                        src={_util.loadHelpIconByName("createCourseWork")}
-                        width="215"
-                        height="317"
-                      />
-                    </div>
+                    <div className="card">
+                      <div className="card-body">
+                        <div className="row">
+                          <b>
+                            Congratulations! <br/><br/>
+                            You are ready to create your first Coursework, following instructions shall guide you.
+                          </b>
+                        </div>
+                        <div className="row">
+                          <img
+                            src={_util.loadHelpIconByName("createCourseWork")}
+                            width="215"
+                            height="317"
+                          />
+                        </div>
+                      </div>
                     </div>
                   ): ""
-                )
-                )
-              : <EditCourseWork assignmentToEdit={assignmentToEdit} showEditCourseWork={this.editCourseWorkClick}/>
+                )): <EditCourseWork assignmentToEdit={assignmentToEdit} showEditCourseWork={this.editCourseWorkClick}/>
               }
-            </Fragment>
+            {/* </Fragment> */}
           </Accordion>
         </div>
-      </Fragment>
+
+      // </Fragment> 
+
+      
     );
   }
 }

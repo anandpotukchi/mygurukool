@@ -10,7 +10,7 @@ import * as _constants from "./util/constants";
 import { Wrapper } from "./util/Wrapper";
 import FloatingButton from "./util/FloatingButton";
 import GroupName from "./GroupName";
-// import GroupNameDropdown from "./util/DropdownUtil";
+import GroupNameDropdown from "./util/DropdownUtil";
 import CreateCourse from "./CreateCourse";
 import Welcome from "./Welcome";
 import {DEFAULT_GROUP_NAME} from "./util/constants";
@@ -106,23 +106,21 @@ class Home extends Component {
                          />}
 
           
-        <div className={this.state.cssContainer}>
+        <div className={this.state.cssContainer }>
           <div className="row section-nav">
             <div className="col-12">
               <div className="alert alert-primary">
-                {/* role="alert"> */}
                 <span>
-                  {/* Group Name*/}
                   <b>
                     {<GroupName group={this.state.userData.group} groupSelection={this.groupSelection}/>}
-                    {/* {<GroupNameDropdown dropdownTitleText="Class" itemList={this.state.userData.group} itemSelection={this.groupSelection}/>} */}
+                    {<GroupNameDropdown dropdownTitleText="Class" itemList={this.state.userData.group} itemSelection={this.groupSelection}/>}
                   </b>
                 </span>
                 
               </div>
             </div>
           </div>
-        </div>
+        </div> 
     
         {!this.state.showCreateCourse ? 
           <SplitPane

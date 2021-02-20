@@ -56,8 +56,7 @@ export default class FloatingButton extends Component {
           }}
           icon={<i className="fas fa-file-archive fa-2x" />}
           onClick={() => alert("archive")}
-         
-          
+          alwaysShowTitle={true}
         >
 
         

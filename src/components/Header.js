@@ -14,7 +14,7 @@ export default class Header extends Component {
         <header className="navbar navbar-expand navbar-dark bg-blue flex-column flex-md-row bd-navbar">
           <div className="container">
             <a className="navbar-brand mr-0 mr-md-2 logo">
-              <i class="fas fa-book-open"></i>   myGurukul
+              <i class="fas fa-book-open"></i> &nbsp; myGurukul
             </a>
             <ul className="navbar-nav">
 
