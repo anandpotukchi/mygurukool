@@ -232,13 +232,10 @@ export default class Assignment extends Component {
                                     </ul>
                               ))}
 
-
-
                       </span>
                       
                       <div className="mt-3 mb-3">
                        
-
                         {/* Watch Video */}
                         {this.state.material.youtubeVideos &&
                                   this.state.material.youtubeVideos.map(
@@ -254,6 +251,69 @@ export default class Assignment extends Component {
                                       )
                                   )}
                       </div>
+
+                      
+
+                      <div className="fileblock row">
+                              <div className="col-12">
+                                {this.state.material.exerciseDetails &&
+                                  this.state.material.exerciseDetails.map(
+                                    (exerciseDetail) =>
+                                      exerciseDetail
+                                        ? ((hasDriveFiles = true),
+                                          (
+                                            <FileUpload
+                                              exerciseDetails={exerciseDetail}
+                                              user={this.state.user}
+                                              //userName={this.state.user.name}
+                                              //courseId={assignment.courseId}
+                                              assignmentId={assignment.id}
+                                              isActive={this.props.isActive}
+                                            />
+                                          ))
+                                        : ""
+                                  )}
+                                {!hasDriveFiles ? (
+                                  <FileUpload
+                                    exerciseDetails={""}
+                                    user={this.state.user}
+                                    //userName={this.state.user.name}
+                                    //courseId={assignment.courseId}
+                                    assignmentId={assignment.id}
+                                    isActive={this.props.isActive}
+                                  />
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                              <div className="col-12">
+                              </div>
+                            </div>
+
+                            <div className="row justify-content-end">
+                      
+                          { this.getSubmissionTurnInState(
+                                    assignment.courseId,
+                                    assignment.id
+                                  )}
+
+                          <button
+                                type="button"
+                                className="btn btn-primary mr-2"
+                                disabled={!this.props.isActive}
+                                onClick={() =>
+                                  this.handleSubmissionTurnIn(
+                                    assignment.courseId,
+                                    assignment.id,
+                                    this.state.submissionId
+                                  )
+                                }
+                              >
+                                <i className="fas fa-check"></i>{" "}
+                                {this.state.turnInState}
+                              </button>      
+                      </div>
+                          
       
                     </div>
                   </div>   
@@ -301,7 +361,7 @@ export default class Assignment extends Component {
                               )}
                               <button
                                 type="button"
-                                className="btn btn-primary turnin"
+                                className="btn btn-primary"
                                 disabled={!this.props.isActive}
                                 onClick={() =>
                                   this.handleSubmissionTurnIn(
